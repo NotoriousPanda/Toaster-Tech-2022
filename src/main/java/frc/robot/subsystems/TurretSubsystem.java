@@ -69,7 +69,7 @@ public class TurretSubsystem extends SubsystemBase{
     }
     @Override
     public void periodic(){
-        this.setMotorPower(0.15, "!@#$%^&");
+        //this.setMotorPower(0.15, "!@#$%^&");
         Command cmd = getCurrentCommand();
         if (!isPowerOkay(turretMotor.getMotorOutputPercent())) {
             turretMotor.noteEmergencyStop();

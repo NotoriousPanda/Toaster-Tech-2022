@@ -36,6 +36,7 @@ public class RobotContainer {
   private final RealIntakeSubsystem realIntake = RealIntakeSubsystem.Create();
   private final MidtakeSubsystem midtake = MidtakeSubsystem.Create();
   private final HangSubsystem hanger = HangSubsystem.Create();
+  private final HoodSubsystem hood = new HoodSubsystem();
 
   public static final Joystick driveController = new Joystick(0);
   public static final Joystick secondaryJoystick = new Joystick(1);
@@ -59,15 +60,23 @@ public class RobotContainer {
     JoystickButton x = new JoystickButton(secondaryJoystick, LogitechControllerButtons.x);
     JoystickButton y = new JoystickButton(secondaryJoystick, LogitechControllerButtons.y);
     JoystickButton a = new JoystickButton(secondaryJoystick, LogitechControllerButtons.a);
-    POVButton dPadDown = new POVButton(secondaryJoystick, LogitechControllerButtons.down);
-    POVButton dpadUp = new POVButton(secondaryJoystick, LogitechControllerButtons.up);
+    JoystickButton b = new JoystickButton(secondaryJoystick, LogitechControllerButtons.b);
+    JoystickButton leftTrigger = new JoystickButton(secondaryJoystick, LogitechControllerButtons.triggerLeft);
+    JoystickButton rightTrigger = new JoystickButton(secondaryJoystick, LogitechControllerButtons.triggerRight);
+    POVButton leftDPad = new POVButton(secondaryJoystick, LogitechControllerButtons.left);
+    POVButton rightDPad = new POVButton(secondaryJoystick, LogitechControllerButtons.right);
 
     //x.whileHeld(new ShooterCommand(shooter, 0.3));
     x.whileHeld(new MidtakeCommand(midtake, 0.3));
-    y.whileHeld(new IntakeCommand(intake, -0.7));
+    //b.whileHeld(new IntakeCommand(intake, -0.7));
     a.whileHeld(new RealIntakeCommand(realIntake, -1));
-    dPadDown.whileHeld(new HangCommand(hanger, 0.5, .5, turretSubsystem, dpadUp.getAsBoolean());
+    y.whileHeld(new IntakeCommand(intake, 1));
+    leftTrigger.whileHeld(new HangDownCommand(hanger, 0.5));
+    rightTrigger.whileHeld(new HangUpCommand(hanger, 0.5));
+    leftDPad.whileHeld(new TurretLeftCommand(turretSubsystem, 0.15));
+    rightDPad.whileHeld(new TurretRightCommand(turretSubsystem, 0.15));
 
+    hood.setDefaultCommand(new HoodMoveCommand(hood, () -> secondaryJoystick.getY(), 0.05));
   }
 
   /**
