@@ -163,4 +163,8 @@ public class TeamSparkMAX extends CANSparkMax {
     super.set(power);
     Logs.info("Set power to: " + power + " on motor: " + smartDashboardPrefix + " for reason: " + reason);
   }
+
+public double getMotorOutputPercent() {
+    return 0;
+}
 }

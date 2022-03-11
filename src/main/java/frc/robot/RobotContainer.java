@@ -9,9 +9,7 @@ import java.io.IOException;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.ShooterCommand;
-import frc.robot.commands.IntakeCommand;
-import frc.robot.commands.TankDriveCommand;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.constants.LogitechControllerButtons;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -36,6 +34,8 @@ public class RobotContainer {
   private final VisionSubsystem visionSubsystem = VisionSubsystem.Create();
   private final TurretSubsystem turretSubsystem = TurretSubsystem.Create(visionSubsystem);
   private final RealIntakeSubsystem realIntake = RealIntakeSubsystem.Create();
+  private final MidtakeSubsystem midtake = MidtakeSubsystem.Create();
+  private final HangSubsystem hanger = HangSubsystem.Create();
 
   public static final Joystick driveController = new Joystick(0);
   public static final Joystick secondaryJoystick = new Joystick(1);
@@ -52,17 +52,22 @@ public class RobotContainer {
 
 
   private void configurePrimaryController() {
-    driveTrain.setDefaultCommand(new TankDriveCommand(driveTrain, () -> driveController.getY(), () -> driveController.getRawAxis(5)));
+    driveTrain.setDefaultCommand(new TankDriveCommand(driveTrain, () -> driveController.getY(), () -> driveController.getThrottle()));
   }
 
   private void configureSecondaryController() {
     JoystickButton x = new JoystickButton(secondaryJoystick, LogitechControllerButtons.x);
     JoystickButton y = new JoystickButton(secondaryJoystick, LogitechControllerButtons.y);
     JoystickButton a = new JoystickButton(secondaryJoystick, LogitechControllerButtons.a);
+    POVButton dPadDown = new POVButton(secondaryJoystick, LogitechControllerButtons.down);
+    POVButton dpadUp = new POVButton(secondaryJoystick, LogitechControllerButtons.up);
 
-    x.whileHeld(new ShooterCommand(shooter, 0.3));
+    //x.whileHeld(new ShooterCommand(shooter, 0.3));
+    x.whileHeld(new MidtakeCommand(midtake, 0.3));
     y.whileHeld(new IntakeCommand(intake, -0.7));
-    a.whileHeld(new RealIntakeCommand(realIntake, -0.15));
+    a.whileHeld(new RealIntakeCommand(realIntake, -1));
+    dPadDown.whileHeld(new HangCommand(hanger, 0.5, .5, turretSubsystem, dpadUp.getAsBoolean());
+
   }
 
   /**
