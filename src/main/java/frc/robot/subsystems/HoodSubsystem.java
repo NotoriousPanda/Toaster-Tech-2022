@@ -4,12 +4,16 @@
 
 package frc.robot.subsystems;
 
+import javax.print.attribute.standard.PresentationDirection;
+
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class HoodSubsystem extends SubsystemBase {
   private final Servo actuator;
+  private final double[] presets = {0, 0.33, 0.66, 1};
+  private int currentPreset = 0;
   /** Creates a new HoodSubsystem. */
   public HoodSubsystem() {
     actuator = new Servo(0);
@@ -21,8 +25,20 @@ public class HoodSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Subsystems.Hood.Position", actuator.get());
   }
 
-  public void setPosition(double location) {
-    actuator.set(Math.min(1, Math.max(0, location)));
+  public void nextPreset() {
+    currentPreset++;
+    if (currentPreset >= presets.length) {
+      currentPreset = 0;
+    }
+    actuator.set(presets[currentPreset]);
+  }
+
+  public void lastPreset() {
+    currentPreset--;
+    if (currentPreset < 0) {
+      currentPreset = presets.length - 1;
+    }
+    actuator.set(presets[currentPreset]);
   }
 
   public double getPosition() {
