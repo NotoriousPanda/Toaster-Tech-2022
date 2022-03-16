@@ -21,7 +21,7 @@ public class TurretRightCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    turret.setMotorPower(power, "Manual turret");
+    turret.setMotorPower(-power, "Manual turret");
   }
 
   // Called every time the scheduler runs while the command is scheduled.

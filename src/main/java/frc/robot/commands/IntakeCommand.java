@@ -17,7 +17,8 @@ public class IntakeCommand extends CommandBase{
     }
     @Override 
     public void execute(){
-        intake.setSpeedRatio(power, "button said to");
+        //intake.setSpeedRatio(power, "button said to");
+        intake.setMotorPower(power, "button said to");
     }
 
     @Override

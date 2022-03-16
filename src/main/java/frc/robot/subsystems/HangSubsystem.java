@@ -37,7 +37,7 @@ public class HangSubsystem extends SubsystemBase{
         this.leftHookLimit = Objects.requireNonNull(leftHookLimit, "leftHookLimit must be null");
         this.rightHookLimit = Objects.requireNonNull(rightHookLimit, "rightHookLimit must not be null");
         leftHanger.setNeutralMode(NeutralMode.Brake);
-        rightHanger.setNeutralMode(NeutralMode.Brake);
+        rightHanger.setNeutralMode(NeutralMode.Coast);
 
       }
 
@@ -54,7 +54,8 @@ public class HangSubsystem extends SubsystemBase{
 
         @Override
         public void periodic() {
-            
+        SmartDashboard.putNumber("Subsystems.hanger.leftPow", leftHanger.get());
+        SmartDashboard.putNumber("Subsystems.hanger.rightPow", rightHanger.get());
         SmartDashboard.putBoolean("Subsystem.Hanger.leftLimit", leftLimit.get());
         SmartDashboard.putBoolean("Subsystems.Hanger.rightLimit", rightLimit.get());
 
@@ -79,6 +80,6 @@ public class HangSubsystem extends SubsystemBase{
       }
     
       public void setRightHanger(double power) {
-        rightHanger.set(power);
+        //rightHanger.set(power);
       }
 }   

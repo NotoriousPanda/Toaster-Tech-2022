@@ -40,7 +40,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public static IntakeSubsystem Create(){
         ITeamTalon intakeMotorCAN = new TeamTalonFX("Subsystems.Intake.Motor", Ports.IntakeMotorCAN);
-        PidParameters pidParameters = new PidParameters(0.0018, 0, 0, 0.0018, 0, 1, 20000, 1500, 10);
+        PidParameters pidParameters = new PidParameters(0.3, 0, 0, 0, 0, 1, 20000, 1500, 10);
         return new IntakeSubsystem(intakeMotorCAN, pidParameters);
     }
 
@@ -53,6 +53,10 @@ public class IntakeSubsystem extends SubsystemBase {
         }*/
         //this.setMotorPower(0.5, "");
         pidParameters.periodic("Subsystems.Intake.Main", intakeMotor, 0);
+        SmartDashboard.putNumber("Subsystems.Intake.Error", intakeMotor.getClosedLoopError(0));
+        SmartDashboard.putNumber("Subsystems.Intake.Setpt", intakeMotor.getClosedLoopTarget(0));
+        SmartDashboard.putNumber("Subsystems.Intake.Speed", intakeMotor.getSelectedSensorVelocity(0));
+        
     }
 
     private double getCappedPower(double desired){

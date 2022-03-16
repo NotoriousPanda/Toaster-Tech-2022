@@ -63,18 +63,21 @@ public class RobotContainer {
     JoystickButton b = new JoystickButton(secondaryJoystick, LogitechControllerButtons.b);
     JoystickButton leftTrigger = new JoystickButton(secondaryJoystick, LogitechControllerButtons.triggerLeft);
     JoystickButton rightTrigger = new JoystickButton(secondaryJoystick, LogitechControllerButtons.triggerRight);
+    //JoystickButton start = new JoystickButton(secondaryJoystick, LogitechControllerButtons.start);
     POVButton leftDPad = new POVButton(secondaryJoystick, LogitechControllerButtons.left);
     POVButton rightDPad = new POVButton(secondaryJoystick, LogitechControllerButtons.right);
 
-    //x.whileHeld(new ShooterCommand(shooter, 0.3));
+    //start.whenPressed(new TiltHangCommand(tilthang));
+    //x.whileHeld(new ShooterCommand(shooter, 0.3);
     x.whileHeld(new MidtakeCommand(midtake, 0.3));
-    //b.whileHeld(new IntakeCommand(intake, -0.7));
+   // b.whenPressed(new LowerIntakeCommand(realIntake));
     a.whileHeld(new RealIntakeCommand(realIntake, -1));
-    y.whileHeld(new IntakeCommand(intake, 1));
-    leftTrigger.whileHeld(new HangDownCommand(hanger, 0.5));
-    rightTrigger.whileHeld(new HangUpCommand(hanger, 0.5));
-    leftDPad.whileHeld(new TurretLeftCommand(turretSubsystem, 0.15));
-    rightDPad.whileHeld(new TurretRightCommand(turretSubsystem, 0.15));
+    y.whileHeld(new IntakeCommand(intake, -0.71));
+    b.whenPressed(new ToggleIntake(realIntake));
+    leftTrigger.whileHeld(new HangDownCommand(hanger, 0.9));
+    rightTrigger.whileHeld(new HangUpCommand(hanger, 1));
+    leftDPad.whileHeld(new TurretLeftCommand(turretSubsystem, 0.05));
+    rightDPad.whileHeld(new TurretRightCommand(turretSubsystem, 0.05));
 
     hood.setDefaultCommand(new HoodMoveCommand(hood, () -> secondaryJoystick.getY(), 0.05));
   }
@@ -85,7 +88,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return null;
+    // An ExampleCommand will run in autonomous+
+    return new AutonomousCommand(driveTrain);
   }
 }

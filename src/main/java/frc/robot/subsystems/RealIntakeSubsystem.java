@@ -1,31 +1,48 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.PidParameters;
 import frc.robot.TeamSparkMAX;
 import frc.robot.TeamUtils;
+import frc.robot.commands.RealIntakeCommand;
 import frc.robot.constants.Ports;
 
 public class RealIntakeSubsystem extends SubsystemBase{
     private TeamSparkMAX realIntakeMotor;
+    private Solenoid leftPiston;
+    private Solenoid rightPiston;
+    // private DoubleSolenoid intakepiston;
+    public boolean isExtended;
 
-    public RealIntakeSubsystem(TeamSparkMAX realIntakeMotor){
+    public RealIntakeSubsystem(TeamSparkMAX realIntakeMotor, Solenoid leftPiston, Solenoid rightPiston){
         this.realIntakeMotor = realIntakeMotor;
+        this.leftPiston = leftPiston;
+        this.rightPiston = rightPiston;
         setupRealIntake();
     }
 
     public static RealIntakeSubsystem Create(){
         TeamSparkMAX realIntakeMotor = new TeamSparkMAX("Subsystems.RealIntake.Motor", Ports.RealIntakeMotorCan);
-        return new RealIntakeSubsystem(realIntakeMotor);
+        Solenoid leftPiston = new Solenoid(PneumaticsModuleType.CTREPCM, Ports.intakepistonfoward);
+        Solenoid rightPiston = new Solenoid(PneumaticsModuleType.CTREPCM, Ports.intakepistonreverse);
+        //DoubleSolenoid intakepiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Ports.intakepistonfoward, Ports.intakepistonreverse);
+        return new RealIntakeSubsystem(realIntakeMotor, leftPiston, rightPiston);
     }
 
     private void setupRealIntake(){
-        
+
+        isExtended = false;
+
     }
 
     @Override
     public void periodic(){
+
 
     }
 
@@ -38,7 +55,21 @@ public class RealIntakeSubsystem extends SubsystemBase{
     }
 
     public void stop(String reason){
+
         setMotorPower(0, reason);
     }
 
+    public void lowerIntake(){
+        isExtended = false;
+        leftPiston.set(true);
+        //rightPiston.set(false);
+        System.out.print("lowerworks");
+    }
+    public void raiseIntake(){
+        isExtended = true;
+       
+          leftPiston.set(false);
+        //rightPiston.set(true);
+        System.out.print("raise works");
+    }
 }

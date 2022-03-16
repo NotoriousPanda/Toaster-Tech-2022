@@ -22,4 +22,6 @@ public class Ports {
   public static final int Climber_RightLimitDIO = 7;
   public static final int Hook_LeftDIO = 9;
   public static final int Hook_RightDIO = 8;
+  public static final int intakepistonfoward = 0;
+  public static final int intakepistonreverse = 2;
 }
