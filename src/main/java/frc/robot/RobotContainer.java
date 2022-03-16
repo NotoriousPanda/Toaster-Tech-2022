@@ -66,6 +66,7 @@ public class RobotContainer {
     //JoystickButton start = new JoystickButton(secondaryJoystick, LogitechControllerButtons.start);
     POVButton leftDPad = new POVButton(secondaryJoystick, LogitechControllerButtons.left);
     POVButton rightDPad = new POVButton(secondaryJoystick, LogitechControllerButtons.right);
+    JoystickButton start = new JoystickButton(secondaryJoystick, LogitechControllerButtons.start);
 
     //start.whenPressed(new TiltHangCommand(tilthang));
     //x.whileHeld(new ShooterCommand(shooter, 0.3);
@@ -78,6 +79,8 @@ public class RobotContainer {
     rightTrigger.whileHeld(new HangUpCommand(hanger, 1));
     leftDPad.whileHeld(new TurretLeftCommand(turretSubsystem, 0.05));
     rightDPad.whileHeld(new TurretRightCommand(turretSubsystem, 0.05));
+
+    start.whileHeld(new AutoAimTurret(turretSubsystem, visionSubsystem, 0.1, 0.01));
 
     hood.setDefaultCommand(new HoodMoveCommand(hood, () -> secondaryJoystick.getY(), 0.05));
   }

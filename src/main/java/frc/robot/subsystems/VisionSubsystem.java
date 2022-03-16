@@ -46,18 +46,6 @@ public class VisionSubsystem extends SubsystemBase {
 
     }
 
-    try {
-      boolean ballSeen = (boolean) TeamUtils.getFromNetworkTable("ballVision", "hasTarget");
-      this.ballSeen = ballSeen;
-      if (ballSeen) {
-        double ballX = (double) TeamUtils.getFromNetworkTable("ballVision", "targetX");
-        double ballY = (double) TeamUtils.getFromNetworkTable("ballVision", "targetY");
-        this.ballX = ballX;
-        this.ballY = ballY;
-      }
-    } catch (Exception e) {
-
-    }
   }
 
   public double getLastSeenTx() {
