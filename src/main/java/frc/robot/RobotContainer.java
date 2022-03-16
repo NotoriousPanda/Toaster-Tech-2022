@@ -80,7 +80,7 @@ public class RobotContainer {
     leftDPad.whileHeld(new TurretLeftCommand(turretSubsystem, 0.05));
     rightDPad.whileHeld(new TurretRightCommand(turretSubsystem, 0.05));
 
-    start.whileHeld(new AutoAimTurret(turretSubsystem, visionSubsystem, 0.1, 0.01));
+    start.whileHeld(new AutoAimTurret(turretSubsystem, visionSubsystem, 0.1, 0.005));
 
     hood.setDefaultCommand(new HoodMoveCommand(hood, () -> secondaryJoystick.getY(), 0.05));
   }

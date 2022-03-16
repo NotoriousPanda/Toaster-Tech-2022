@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class HoodSubsystem extends SubsystemBase {
@@ -17,10 +18,11 @@ public class HoodSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("Subsystems.Hood.Position", actuator.get());
   }
 
   public void setPosition(double location) {
-    actuator.set(Math.max(1, Math.min(0, location)));
+    actuator.set(Math.min(1, Math.max(0, location)));
   }
 
   public double getPosition() {
