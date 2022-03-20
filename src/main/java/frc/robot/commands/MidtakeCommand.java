@@ -23,6 +23,7 @@ public class MidtakeCommand extends CommandBase{
 
     @Override
     public void end(boolean interrupted){
+        
         midtake.stop("stopped intake command");
     }
 

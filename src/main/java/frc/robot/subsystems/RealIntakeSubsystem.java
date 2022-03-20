@@ -12,6 +12,9 @@ import frc.robot.TeamUtils;
 import frc.robot.commands.RealIntakeCommand;
 import frc.robot.constants.Ports;
 
+
+
+
 public class RealIntakeSubsystem extends SubsystemBase{
     private TeamSparkMAX realIntakeMotor;
     private Solenoid leftPiston;
@@ -26,8 +29,7 @@ public class RealIntakeSubsystem extends SubsystemBase{
 
     public static RealIntakeSubsystem Create(){
         TeamSparkMAX realIntakeMotor = new TeamSparkMAX("Subsystems.RealIntake.Motor", Ports.RealIntakeMotorCan);
-        Solenoid leftPiston = new Solenoid(PneumaticsModuleType.CTREPCM, Ports.intakepistonport);
-        //DoubleSolenoid intakepiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Ports.intakepistonport, Ports.intakepistonreverse);
+        Solenoid leftPiston = new Solenoid(PneumaticsModuleType.REVPH, Ports.intakepistonport);
         return new RealIntakeSubsystem(realIntakeMotor, leftPiston );
     }
 

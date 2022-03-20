@@ -1,7 +1,7 @@
 package frc.robot.constants;
 
 public class Ports {
-  // Port values for motors
+  // Values for ID's in motors
   public static final int LeftDriveFalconMainCAN = 1;
   public static final int LeftDriveFalconSubCAN = 2;
   public static final int RightDriveFalconMainCAN = 3;

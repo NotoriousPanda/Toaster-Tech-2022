@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
-  private Compressor compressor = new Compressor(PneumaticsModuleType.CTREPCM);
+  private Compressor compressor = new Compressor(PneumaticsModuleType.REVPH);
   private RobotContainer m_robotContainer;
 
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
