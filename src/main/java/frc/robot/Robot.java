@@ -28,9 +28,9 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
 
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-NetworkTableEntry tx = table.getEntry("tx");
-NetworkTableEntry ty = table.getEntry("ty");
-NetworkTableEntry ta = table.getEntry("ta");
+  NetworkTableEntry tx = table.getEntry("tx");
+  NetworkTableEntry ty = table.getEntry("ty");
+  NetworkTableEntry ta = table.getEntry("ta");
 
 //read values periodically
 
@@ -60,9 +60,9 @@ NetworkTableEntry ta = table.getEntry("ta");
   @Override
   public void robotPeriodic() {
     double x = tx.getDouble(0.0);
-  double y = ty.getDouble(0.0);
-  double area = ta.getDouble(0.0);
-  SmartDashboard.putNumber("LimelightX", x);
+    double y = ty.getDouble(0.0);
+    double area = ta.getDouble(0.0);
+    SmartDashboard.putNumber("LimelightX", x);
     SmartDashboard.putNumber("LimelightY", y);
     SmartDashboard.putNumber("LimelightArea", area);
     // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled

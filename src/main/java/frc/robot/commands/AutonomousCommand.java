@@ -13,12 +13,18 @@ public class AutonomousCommand extends CommandBase {
     }
     public void execute (){
 
-        while (driveTrain.getRightEncoder() < 7000 ){
-            driveTrain.setMotorPowers(0.7, 0.7, "autonomous");
+        while (driveTrain.getLeftEncoder() < -500){
+            driveTrain.setMotorPowers(0.1, 0.1, "autonomous");
 
         }
 
         driveTrain.stop("end");
+
+        
+
+        
+
+
         
 
         

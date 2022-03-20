@@ -37,6 +37,7 @@ public class RobotContainer {
   private final MidtakeSubsystem midtake = MidtakeSubsystem.Create();
   private final HangSubsystem hanger = HangSubsystem.Create();
   private final HoodSubsystem hood = new HoodSubsystem();
+  private final HangPistonSubsystem tilthang = HangPistonSubsystem.Create();
 
   public static final Joystick driveController = new Joystick(0);
   public static final Joystick secondaryJoystick = new Joystick(1);
@@ -63,19 +64,20 @@ public class RobotContainer {
     JoystickButton b = new JoystickButton(secondaryJoystick, LogitechControllerButtons.b);
     JoystickButton leftTrigger = new JoystickButton(secondaryJoystick, LogitechControllerButtons.triggerLeft);
     JoystickButton rightTrigger = new JoystickButton(secondaryJoystick, LogitechControllerButtons.triggerRight);
-    //JoystickButton start = new JoystickButton(secondaryJoystick, LogitechControllerButtons.start);
     POVButton leftDPad = new POVButton(secondaryJoystick, LogitechControllerButtons.left);
     POVButton rightDPad = new POVButton(secondaryJoystick, LogitechControllerButtons.right);
     POVButton dPadUp = new POVButton(secondaryJoystick, LogitechControllerButtons.up);
     POVButton dPadDown = new POVButton(secondaryJoystick, LogitechControllerButtons.down);
     JoystickButton start = new JoystickButton(secondaryJoystick, LogitechControllerButtons.start);
+    JoystickButton home = new JoystickButton(secondaryJoystick, LogitechControllerButtons.home);
+    JoystickButton mode = new JoystickButton(secondaryJoystick, LogitechControllerButtons.bumperRight);
 
-    //start.whenPressed(new TiltHangCommand(tilthang));
     //x.whileHeld(new ShooterCommand(shooter, 0.3);
-    x.whileHeld(new MidtakeCommand(midtake, 0.3));
+    x.whileHeld(new MidtakeCommand(midtake, 0.25));
    // b.whenPressed(new LowerIntakeCommand(realIntake));
     a.whileHeld(new RealIntakeCommand(realIntake, -1));
-    y.whileHeld(new IntakeCommand(intake, -0.71));
+    y.whileHeld(new IntakeCommand(intake, -0.69));
+    mode.whileHeld(new IntakeCommand(intake, -0.81));
     b.whenPressed(new ToggleIntake(realIntake));
     leftTrigger.whileHeld(new HangDownCommand(hanger, 0.9));
     rightTrigger.whileHeld(new HangUpCommand(hanger, 1));
@@ -83,6 +85,7 @@ public class RobotContainer {
     rightDPad.whileHeld(new TurretRightCommand(turretSubsystem, 0.05));
 
     start.whileHeld(new AutoAimTurret(turretSubsystem, visionSubsystem, 0.1, 0.005));
+    home.whenPressed(new tilthangCommand(tilthang));
 
     dPadUp.whenPressed(new HoodMoveUp(hood));
     dPadDown.whenPressed(new HoodMoveDown(hood));
@@ -95,6 +98,10 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous+
-    return new AutonomousCommand(driveTrain);
-  }
+
+  
+    return new IntakeCommand(intake, -0.66) ;
+    //return new AutonomousCommand(driveTrain);
+    
+    }
 }

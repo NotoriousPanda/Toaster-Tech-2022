@@ -37,7 +37,7 @@ public class HangSubsystem extends SubsystemBase{
         this.leftHookLimit = Objects.requireNonNull(leftHookLimit, "leftHookLimit must be null");
         this.rightHookLimit = Objects.requireNonNull(rightHookLimit, "rightHookLimit must not be null");
         leftHanger.setNeutralMode(NeutralMode.Brake);
-        rightHanger.setNeutralMode(NeutralMode.Coast);
+        rightHanger.setNeutralMode(NeutralMode.Brake);
 
       }
 
