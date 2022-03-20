@@ -73,7 +73,7 @@ public class RobotContainer {
     JoystickButton mode = new JoystickButton(secondaryJoystick, LogitechControllerButtons.bumperRight);
 
     //x.whileHeld(new ShooterCommand(shooter, 0.3);
-    x.whileHeld(new MidtakeCommand(midtake, 0.25));
+    x.whileHeld(new MidtakeCommand(midtake, 0.3));
    // b.whenPressed(new LowerIntakeCommand(realIntake));
     a.whileHeld(new RealIntakeCommand(realIntake, -1));
     y.whileHeld(new IntakeCommand(intake, -0.69));
