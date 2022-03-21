@@ -55,7 +55,16 @@ public class RobotContainer {
 
 
   private void configurePrimaryController() {
-    driveTrain.setDefaultCommand(new TankDriveCommand(driveTrain, () -> driveController.getY(), () -> driveController.getThrottle()));
+    boolean GTADrive;
+    Preferences prefs = Preferences.getInstance();
+    GTADrive = prefs.getBoolean("GTADrive", true);
+
+    JoystickButton rightTrigger =
+        new JoystickButton(driveController, LogitechControllerButtons.triggerRight);
+    JoystickButton leftTrigger = new JoystickButton(driveController, LogitechControllerButtons.triggerLeft);
+    JoystickButton leftBumper = new JoystickButton(driveController, LogitechControllerButtons.bumperLeft);
+    JoystickButton rightBumper = new JoystickButton(driveController, LogitechControllerButtons.bumperRight);
+    JoystickButton x = new JoystickButton(driveController, LogitechControllerButtons.x);
   }
 
   private void configureSecondaryController() {
