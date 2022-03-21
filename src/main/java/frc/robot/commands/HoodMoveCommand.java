@@ -34,13 +34,13 @@ public class HoodMoveCommand extends CommandBase {
   public void execute() {
     currentPosition += maxSpeed*leftStick.getAsDouble();
     currentPosition = Math.max(0, Math.min(1, currentPosition));
-    hood.setPosition(currentPosition);
+    //hood.setPosition(currentPosition);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    hood.setPosition(hood.getPosition());
+   // hood.setPosition(hood.getPosition());
   }
 
   // Returns true when the command should end.
