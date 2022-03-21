@@ -29,7 +29,7 @@ public class RealIntakeSubsystem extends SubsystemBase{
 
     public static RealIntakeSubsystem Create(){
         TeamSparkMAX realIntakeMotor = new TeamSparkMAX("Subsystems.RealIntake.Motor", Ports.RealIntakeMotorCan);
-        Solenoid leftPiston = new Solenoid(PneumaticsModuleType.REVPH, Ports.intakepistonport);
+        Solenoid leftPiston = new Solenoid(PneumaticsModuleType.CTREPCM, Ports.intakepistonport);
         return new RealIntakeSubsystem(realIntakeMotor, leftPiston );
     }
 

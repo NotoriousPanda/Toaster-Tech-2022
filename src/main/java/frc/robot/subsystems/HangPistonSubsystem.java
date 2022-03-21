@@ -21,7 +21,7 @@ public class HangPistonSubsystem extends SubsystemBase{
     }
 
     public static HangPistonSubsystem Create(){
-        Solenoid hangPiston = new Solenoid(PneumaticsModuleType.REVPH, Ports.hangpistonport);
+        Solenoid hangPiston = new Solenoid(PneumaticsModuleType.CTREPCM, Ports.hangpistonport);
         return new HangPistonSubsystem(hangPiston);
     }
 
