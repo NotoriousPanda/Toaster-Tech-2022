@@ -72,6 +72,7 @@ public class RobotContainer {
     JoystickButton start = new JoystickButton(secondaryJoystick, LogitechControllerButtons.start);
     JoystickButton home = new JoystickButton(secondaryJoystick, LogitechControllerButtons.home);
     JoystickButton mode = new JoystickButton(secondaryJoystick, LogitechControllerButtons.bumperRight);
+    JoystickButton bumperleft = new JoystickButton(secondaryJoystick, LogitechControllerButtons.bumperLeft);
 
     //x.whileHeld(new ShooterCommand(shooter, 0.3);
     x.whileHeld(new MidtakeCommand(midtake, 0.25));
@@ -86,6 +87,7 @@ public class RobotContainer {
     rightDPad.whileHeld(new TurretRightCommand(turretSubsystem, 0.05));
 
     start.whileHeld(new AutoAimTurret(turretSubsystem, visionSubsystem, 0.1, 0.005));
+    bumperleft.whileHeld(new HomeTurret(turretSubsystem, 0.1, 0.005));
     home.whenPressed(new tilthangCommand(tilthang));
 
     dPadUp.whenPressed(new HoodMoveUp(hood));

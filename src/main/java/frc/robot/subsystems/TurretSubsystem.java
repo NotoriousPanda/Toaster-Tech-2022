@@ -89,6 +89,9 @@ public class TurretSubsystem extends SubsystemBase{
 
     }
 
-    
+    public double getTurretEncoder(){
+        return turretMotor.getCurrentEncoderValue();
+    }
+
     }
     
