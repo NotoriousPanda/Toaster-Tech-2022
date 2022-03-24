@@ -16,6 +16,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 
 
 public class IntakeSubsystem extends SubsystemBase {
+    private static ITeamTalon motor;
     ITeamTalon intakeMotor;
     PidParameters pidParameters;
     int counter = 0;
@@ -41,6 +42,7 @@ public class IntakeSubsystem extends SubsystemBase {
     public static IntakeSubsystem Create(){
         ITeamTalon intakeMotorCAN = new TeamTalonFX("Subsystems.Intake.Motor", Ports.IntakeMotorCAN);
         PidParameters pidParameters = new PidParameters(0.3, 0, 0, 0, 0, 1, 20000, 1500, 10);
+        motor.set(ControlMode.Velocity, 5000);
         return new IntakeSubsystem(intakeMotorCAN, pidParameters);
     }
 
@@ -65,7 +67,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void setMotorPower(double power, String reason){
         intakeMotor.set(getCappedPower(power), reason);
-    }
+    }   
 
     public void stop(String reason){
         setMotorPower(0, reason);

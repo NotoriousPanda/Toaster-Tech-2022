@@ -75,10 +75,10 @@ public class TurretSubsystem extends SubsystemBase{
         Command cmd = getCurrentCommand();
         if (!isPowerOkay(turretMotor.getMotorOutputPercent())) {
             turretMotor.noteEmergencyStop();
-            stop("Lol");
+            stop("Bees Nuts Lmao+");
             if (cmd != null) cmd.cancel();
       
-            stop("Lol"); }
+            stop("Bees Nuts Lmao"); }
 
             
     }

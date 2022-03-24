@@ -103,8 +103,8 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous+
 
   
-    return new IntakeCommand(intake, -0.66) ;
-    //return new AutonomousCommand(driveTrain);
+    //return new IntakeCommand(intake, -0.66) ;
+    return new AutonomousCommand(driveTrain, intake);
     
     }
 }
