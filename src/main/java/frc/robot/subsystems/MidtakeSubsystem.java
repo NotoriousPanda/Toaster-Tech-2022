@@ -7,7 +7,10 @@ import frc.robot.TeamSparkMAX;
 import frc.robot.TeamUtils;
 import frc.robot.constants.Ports;
 
+
 public class MidtakeSubsystem extends SubsystemBase{
+
+    double counter;
     private TeamSparkMAX midtakeMotor;
 
     public MidtakeSubsystem(TeamSparkMAX midtakeMotor){
@@ -39,6 +42,11 @@ public class MidtakeSubsystem extends SubsystemBase{
 
     public void stop(String reason){
         setMotorPower(0, reason);
+
     }
 
+    public double getCurrentEncoderValue(){
+        return counter;
+
+    }
 }

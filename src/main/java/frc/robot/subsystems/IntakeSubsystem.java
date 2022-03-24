@@ -77,4 +77,10 @@ public class IntakeSubsystem extends SubsystemBase {
         intakeMotor.set(ControlMode.Velocity, maxSpeed*Math.max(-1, Math.min(1, power)));
         intakeMotor.configureWithPidParameters(pidParameters, 0);
     }
+
+    public double getCurrentEncoderValue(){
+        return counter;
+        
+    }
+
 }

@@ -104,7 +104,7 @@ public class RobotContainer {
 
   
     //return new IntakeCommand(intake, -0.66) ;
-    return new AutonomousCommand(driveTrain, intake);
+    return new AutonomousCommand(driveTrain, intake, midtake);
     
     }
 }
