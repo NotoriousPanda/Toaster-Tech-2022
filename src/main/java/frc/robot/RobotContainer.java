@@ -91,7 +91,8 @@ public class RobotContainer {
     dPadUp.whileHeld(new HangUpCommand(hanger, 1));
 
     start.whileHeld(new AutoAimTurret(turretSubsystem, visionSubsystem, 0.1, 0.005));
-    bumperleft.whileHeld(new HomeTurret(turretSubsystem, 0.1, 0.005));
+    bumperleft.whileHeld(new MidtakeCommand(midtake, -0.20));
+    //bumperleft.whileHeld(new HomeTurret(turretSubsystem, 0.1, 0.005));
     home.whenPressed(new tilthangCommand(tilthang));
 
 

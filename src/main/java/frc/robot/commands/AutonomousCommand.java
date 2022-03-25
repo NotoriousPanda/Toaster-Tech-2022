@@ -11,8 +11,9 @@ public class AutonomousCommand extends CommandBase {
     private final IntakeSubsystem intake;
     private final MidtakeSubsystem midtake;
 
-    protected int TimerPartA;
-    protected int TimerPartB;
+    public int TimerPartA;
+    public int TimerPartB;
+    public int TimerPartC;
 
     public AutonomousCommand (DriveTrainSubsystem driveTrain, IntakeSubsystem intake, MidtakeSubsystem midtake){
 
@@ -23,6 +24,7 @@ public class AutonomousCommand extends CommandBase {
 
         TimerPartA = 0;
         TimerPartB = 0;
+        TimerPartC = 0;
 
 
         addRequirements(driveTrain);
@@ -32,33 +34,54 @@ public class AutonomousCommand extends CommandBase {
     }
     public void execute (){
 
-        while (driveTrain.getLeftEncoder() < -650){
-            driveTrain.setMotorPowers(0.1, 0.1, "autonomous");
-                }
+        System.out.print(driveTrain.getLeftEncoder());
 
+        while (TimerPartA < 7000){
+
+            System.out.print(driveTrain.getLeftEncoder());
+
+            driveTrain.setMotorPowers(0.2, 0.2, "autonomous");
+
+            TimerPartA++;
+        }
             
+        driveTrain.stop("just do it");
 
-                driveTrain.stop("Lol");
-
-                }
+        while (TimerPartB < 3000){
 
 
-        
+            intake.setMotorPower(0.5, "reason");
+            //midtake.setMotorPower(0.5, "lmao");
+
+            TimerPartB++;
+        }
+
+        while (TimerPartC < 6969){
+
+            midtake.setMotorPower(0.5, "Lol");
+
+            TimerPartC++;
+        }
+
+        midtake.stop("xD");
+        midtake.stop("Hehehehhehehe");
+
+    }
+
     
-            /*else if (TimerPartA < 3000){
+            /*while (TimerPartB < 3000){
 
-                driveTrain.stop("end");
 
                 intake.setMotorPower(0.5, "reason");
                 //midtake.setMotorPower(0.5, "lmao");
 
-                TimerPartA++;
+                TimerPartB++;
 
 
 
         }
 
-        else if (TimerPartB < 6969){
+         (TimerPartB < 6969){
 
             midtake.setMotorPower(0.5, "Lol");
 
