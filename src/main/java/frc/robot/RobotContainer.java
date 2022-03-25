@@ -87,8 +87,8 @@ public class RobotContainer {
     b.whenPressed(new ToggleIntake(realIntake));
     //leftTrigger.whileHeld(new HangDownCommand(hanger, 0.9));
     //rightTrigger.whileHeld(new HangUpCommand(hanger, 1));
-    leftDPad.whileHeld(new HangDownCommand(hanger, 0.95));
-    rightDPad.whileHeld(new HangUpCommand(hanger, 1));
+    dPadDown.whileHeld(new HangDownCommand(hanger, 0.95));
+    dPadUp.whileHeld(new HangUpCommand(hanger, 1));
 
     start.whileHeld(new AutoAimTurret(turretSubsystem, visionSubsystem, 0.1, 0.005));
     bumperleft.whileHeld(new HomeTurret(turretSubsystem, 0.1, 0.005));
@@ -96,8 +96,8 @@ public class RobotContainer {
 
 
 
-    dPadUp.whenPressed(new HoodMoveUp(hood));
-    dPadDown.whenPressed(new HoodMoveDown(hood));
+    leftDPad.whileHeld(new TurretLeftCommand(turretSubsystem, 0.05));
+    rightDPad.whileHeld(new TurretRightCommand(turretSubsystem, 0.05));
   }
 
   /**

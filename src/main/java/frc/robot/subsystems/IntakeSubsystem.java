@@ -79,7 +79,7 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     public double getCurrentEncoderValue(){
-        return counter;
+        return intakeMotor.getCurrentEncoderValue();
         
     }
 
