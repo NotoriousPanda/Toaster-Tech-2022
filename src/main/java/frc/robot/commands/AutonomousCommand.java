@@ -12,12 +12,14 @@ public class AutonomousCommand extends CommandBase {
     private final MidtakeSubsystem midtake;
 
     public AutonomousCommand (DriveTrainSubsystem driveTrain, IntakeSubsystem intake, MidtakeSubsystem midtake){
+
         this.intake = intake;
         this.driveTrain = driveTrain;
         this.midtake = midtake;
         addRequirements(driveTrain);
         addRequirements(intake);
         addRequirements(midtake);
+
     }
     public void execute (){
 
@@ -27,8 +29,8 @@ public class AutonomousCommand extends CommandBase {
            while (intake.getCurrentEncoderValue() < - 500){
             intake.setMotorPower(0.5, "reason");
 
-            while (midtake.getCurrentEncoderValue() < - 500){
-                midtake.setMotorPower(0.5, "lmao");
+                while (midtake.getCurrentEncoderValue() < - 500){
+                 midtake.setMotorPower(0.5, "lmao");
 
 
             }

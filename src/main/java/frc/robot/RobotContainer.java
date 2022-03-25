@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.constants.LogitechControllerButtons;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -43,6 +44,8 @@ public class RobotContainer {
   public static final Joystick driveController = new Joystick(0);
   public static final Joystick secondaryJoystick = new Joystick(1);
 
+  public static final Trigger hangController = new Trigger();
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. 
    * @throws IOException
    * @throws SecurityException */
@@ -59,12 +62,13 @@ public class RobotContainer {
   }
 
   private void configureSecondaryController() {
+    
     JoystickButton x = new JoystickButton(secondaryJoystick, LogitechControllerButtons.x);
     JoystickButton y = new JoystickButton(secondaryJoystick, LogitechControllerButtons.y);
     JoystickButton a = new JoystickButton(secondaryJoystick, LogitechControllerButtons.a);
     JoystickButton b = new JoystickButton(secondaryJoystick, LogitechControllerButtons.b);
-    JoystickButton leftTrigger = new JoystickButton(secondaryJoystick, LogitechControllerButtons.triggerLeft);
-    JoystickButton rightTrigger = new JoystickButton(secondaryJoystick, LogitechControllerButtons.triggerRight);
+    //POVButton leftTrigger = new POVButton(secondaryJoystick, LogitechControllerButtons.triggerLeft);
+    //POVButton rightTrigger = new POVButton(secondaryJoystick, LogitechControllerButtons.triggerRight);
     POVButton leftDPad = new POVButton(secondaryJoystick, LogitechControllerButtons.left);
     POVButton rightDPad = new POVButton(secondaryJoystick, LogitechControllerButtons.right);
     POVButton dPadUp = new POVButton(secondaryJoystick, LogitechControllerButtons.up);
@@ -81,14 +85,16 @@ public class RobotContainer {
     y.whileHeld(new IntakeCommand(intake, -0.69));
     mode.whileHeld(new IntakeCommand(intake, -0.81));
     b.whenPressed(new ToggleIntake(realIntake));
-    leftTrigger.whileHeld(new HangDownCommand(hanger, 0.9));
-    rightTrigger.whileHeld(new HangUpCommand(hanger, 1));
-    leftDPad.whileHeld(new TurretLeftCommand(turretSubsystem, 0.05));
-    rightDPad.whileHeld(new TurretRightCommand(turretSubsystem, 0.05));
+    //leftTrigger.whileHeld(new HangDownCommand(hanger, 0.9));
+    //rightTrigger.whileHeld(new HangUpCommand(hanger, 1));
+    leftDPad.whileHeld(new HangDownCommand(hanger, 0.95));
+    rightDPad.whileHeld(new HangUpCommand(hanger, 1));
 
     start.whileHeld(new AutoAimTurret(turretSubsystem, visionSubsystem, 0.1, 0.005));
     bumperleft.whileHeld(new HomeTurret(turretSubsystem, 0.1, 0.005));
     home.whenPressed(new tilthangCommand(tilthang));
+
+
 
     dPadUp.whenPressed(new HoodMoveUp(hood));
     dPadDown.whenPressed(new HoodMoveDown(hood));
