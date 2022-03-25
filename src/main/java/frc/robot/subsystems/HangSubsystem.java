@@ -80,6 +80,6 @@ public class HangSubsystem extends SubsystemBase{
       }
     
       public void setRightHanger(double power) {
-        //rightHanger.set(power);
+        rightHanger.set(power);
       }
 }   
